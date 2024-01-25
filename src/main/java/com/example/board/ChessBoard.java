@@ -3,7 +3,7 @@ package com.example.board;
 import com.example.pieces.*;;
 
 public class ChessBoard {
-    Square[][] board;
+    private Square[][] board;
 
     public ChessBoard() {
         board = new Square[8][8];
@@ -15,7 +15,7 @@ public class ChessBoard {
         //Create squares
         for (int i=0; i<8; i++) {
             for (int j=0; j<8; j++){
-                board[i][j] = new Square(i+1, j+1);
+                board[i][j] = new Square(i, j);
             }
         }
         //Create Pawns
@@ -46,4 +46,15 @@ public class ChessBoard {
         board[7][4].setPiece(new King(true, board[7][4]));
     }
 
+    public Square[][] getBoard() {
+        return board;
+    }
+
+    public Square getSquare(int row, int col) {
+        return board[row][col];
+    }
+
+    public void delPiece(int row, int col) {
+        board[row][col].setPiece(null);
+    }
 }

@@ -12,7 +12,7 @@ public class Rook extends Piece{
     }
 
     @Override
-    public List<Move> calculateValidMoves(ChessBoard board) {
+    public List<Square> calculateValidSquares(ChessBoard board) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'calculateValidMoves'");
     }

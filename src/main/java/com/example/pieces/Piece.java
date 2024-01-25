@@ -3,13 +3,12 @@ package com.example.pieces;
 import java.util.List;
 
 import com.example.board.*;
-import com.example.game.Move;
 
 public abstract class Piece {
-   private boolean color;
-   private Square square;
+   protected boolean color;
+   protected Square square;
 
-   public boolean isColor() {
+   public boolean getColor() {
       return color;
    }
    public void setColor(boolean color) {
@@ -27,5 +26,5 @@ public abstract class Piece {
       this.square = square;
    }
 
-   public abstract List<Move> calculateValidMoves(ChessBoard board);
+   public abstract List<Square> calculateValidSquares(ChessBoard board);
 }
