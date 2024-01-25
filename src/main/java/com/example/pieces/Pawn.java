@@ -1,5 +1,6 @@
 package com.example.pieces;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.example.board.*;
@@ -13,8 +14,9 @@ public class Pawn extends Piece {
 
     @Override
     public List<Move> calculateValidMoves(ChessBoard board) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'calculateValidMoves'");
+        List<Move> validMoves = new ArrayList<>();
+
+        return validMoves;
     }
     
 }
