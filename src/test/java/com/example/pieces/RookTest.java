@@ -8,30 +8,28 @@ import org.junit.Test;
 import com.example.board.ChessBoard;
 import com.example.board.Square;
 
-public class PawnTest {
+public class RookTest {
     @Test
     public void testCalculateValidSquares() {
         ChessBoard board = new ChessBoard();
 
-        Piece pawnPiece = board.getSquare(6, 6).getPiece();
+        Piece rookPiece = board.getSquare(0, 3).getPiece();
 
-        //Assert object has been made
-        assertNotNull(pawnPiece);
+        // Check if not null
+        assertNotNull(rookPiece);
 
         //Assert that there are two vaild moves from get go
-        int expectedSize = 2;
-        int actualSize = pawnPiece.calculateValidSquares(board).size();
+        int expectedSize = 0;
+        int actualSize = rookPiece.calculateValidSquares(board).size();
         assertEquals("Expected size: " + expectedSize + ", Actual size: " + actualSize, expectedSize, actualSize);
 
-        
         Square square1 = board.getSquare(4, 4);
-        Square square2 = board.getSquare(3, 5);
-        square1.setPiece(new Pawn(true, square1));
-        square2.setPiece(new Pawn(false, square2));
+        Rook newRook = new Rook(true, square1);
+        square1.setPiece(newRook);
 
         //Assert that there are two vaild moves from get go
-        int expectedSize2 = 3;
-        int actualSize2 = board.getSquare(4, 4).getPiece().calculateValidSquares(board).size();
+        int expectedSize2 = 11;
+        int actualSize2 = newRook.calculateValidSquares(board).size();
         assertEquals("Expected size: " + expectedSize2 + ", Actual size: " + actualSize2, expectedSize2, actualSize2);
     }
 }

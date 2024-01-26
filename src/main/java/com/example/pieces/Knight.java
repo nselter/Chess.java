@@ -3,7 +3,6 @@ package com.example.pieces;
 import java.util.List;
 
 import com.example.board.*;
-import com.example.game.Move;
 
 public class Knight extends Piece{
 
