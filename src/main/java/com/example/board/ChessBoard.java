@@ -57,4 +57,27 @@ public class ChessBoard {
     public void delPiece(int row, int col) {
         board[row][col].setPiece(null);
     }
+
+    public void print() {
+        String lineBreak = "  ---------------------------------";
+        System.out.println(lineBreak);
+        for (int i=0; i<8; i++) {
+            StringBuilder sb = new StringBuilder();
+            sb.append(""+(8-i));
+            for (Square sq : board[i]) {
+                sb.append(" | "+sq.toString());
+            }
+            sb.append(" |");
+            System.out.println(sb.toString());
+            System.out.println(lineBreak);
+        }
+
+        StringBuilder sb = new StringBuilder();
+        sb.append(" ");
+        for (int i=0; i<8; i++) {
+            sb.append("   ");
+            sb.append((char) ('A'+i));
+        }
+        System.out.println(sb);
+    }
 }

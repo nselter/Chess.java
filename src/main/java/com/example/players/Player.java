@@ -4,11 +4,12 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.example.board.ChessBoard;
+import com.example.game.Move;
 import com.example.pieces.Piece;
 
-public class Player {
-    private boolean color;
-    private Set<Piece> pieces;
+public abstract class Player {
+    protected boolean color;
+    protected Set<Piece> pieces;
 
     public Player(boolean color, ChessBoard board) {
         this.color = color;
@@ -44,5 +45,5 @@ public class Player {
         pieces.add(piece);
     }
 
-
+    public abstract Move makeMove(ChessBoard board);
 }

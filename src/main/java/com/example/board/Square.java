@@ -1,6 +1,12 @@
 package com.example.board;
 
+import com.example.pieces.Bishop;
+import com.example.pieces.King;
+import com.example.pieces.Knight;
+import com.example.pieces.Pawn;
 import com.example.pieces.Piece;
+import com.example.pieces.Queen;
+import com.example.pieces.Rook;
 
 public class Square {
     private int row;
@@ -37,5 +43,17 @@ public class Square {
     }
     public boolean isEmpty() {
         return piece == null;
+    }
+
+    @Override
+    public String toString() {
+        if (piece == null) return " ";
+        else if (piece instanceof Pawn) return "P";
+        else if (piece instanceof Rook) return "R";
+        else if (piece instanceof Knight) return "N";
+        else if (piece instanceof Bishop) return "B";
+        else if (piece instanceof King) return "K";
+        else if (piece instanceof Queen) return "Q";
+        else return "";
     }
 }
