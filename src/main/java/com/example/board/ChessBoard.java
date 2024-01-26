@@ -78,6 +78,6 @@ public class ChessBoard {
             sb.append("   ");
             sb.append((char) ('A'+i));
         }
-        System.out.println(sb);
+        System.out.println(sb.toString() + "\n");
     }
 }
