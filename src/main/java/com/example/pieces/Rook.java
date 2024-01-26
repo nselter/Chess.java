@@ -17,7 +17,15 @@ public class Rook extends Piece{
         int row = super.square.getRow();
         int col = super.square.getCol();
 
-        for (int i=row; i>=0; i--) {
+        for (int i=row-1; i>=0; i--) {
+            if (board.getSquare(i, col).isEmpty()) {
+                validSquares.add(board.getSquare(i, col));
+            } else {
+                if (board.getSquare(i, col).getPiece().getColor() != super.color) validSquares.add(board.getSquare(i, col));
+                break;
+            }
+        }
+        for (int i=row+1; i<8; i++) {
             if (board.getSquare(i, col).isEmpty()) {
                 validSquares.add(board.getSquare(i, col));
             } else{
@@ -25,15 +33,7 @@ public class Rook extends Piece{
                 break;
             }
         }
-        for (int i=row; i<8; i++) {
-            if (board.getSquare(i, col).isEmpty()) {
-                validSquares.add(board.getSquare(i, col));
-            } else{
-                if (board.getSquare(i, col).getPiece().getColor() != super.color) validSquares.add(board.getSquare(i, col));
-                break;
-            }
-        }
-        for (int i=col; i>=0; i--) {
+        for (int i=col-1; i>=0; i--) {
             if (board.getSquare(row, i).isEmpty()) {
                 validSquares.add(board.getSquare(row, i));
             } else{
@@ -41,7 +41,7 @@ public class Rook extends Piece{
                 break;
             }
         }
-        for (int i=col; i<8; i--) {
+        for (int i=col+1; i<8; i++) {
             if (board.getSquare(row, i).isEmpty()) {
                 validSquares.add(board.getSquare(row, i));
             } else{

@@ -14,6 +14,7 @@ public class Square {
     public Square(int row, int col) {
         this.row = row;
         this.col = col;
+        this.piece = null;
     }
 
     public int getRow() {

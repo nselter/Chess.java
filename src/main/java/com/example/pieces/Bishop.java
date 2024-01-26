@@ -28,6 +28,8 @@ public class Bishop extends Piece{
             i++;
             j++;
         }
+        i=row; 
+        j=col;
         while (i<7 && j>0) {
             Square square = board.getSquare(i+1, j-1);
             if (square.isEmpty()) validSquares.add(square);
@@ -38,6 +40,8 @@ public class Bishop extends Piece{
             i++;
             j--;
         }
+        i=row; 
+        j=col;
         while (i>0 && j>0) {
             Square square = board.getSquare(i-1, j-1);
             if (square.isEmpty()) validSquares.add(square);
@@ -48,6 +52,8 @@ public class Bishop extends Piece{
             i--;
             j--;
         }
+        i=row; 
+        j=col;
         while (--i>0 && ++j<7) {
             Square square = board.getSquare(i-1, j+1);
             if (square.isEmpty()) validSquares.add(square);
