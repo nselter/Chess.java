@@ -4,12 +4,10 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import java.util.Scanner;
-import java.util.Set;
 
 import org.junit.Test;
 
 import com.example.board.ChessBoard;
-import com.example.pieces.Piece;
 
 public class HumanPlayerTest {
 

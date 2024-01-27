@@ -42,8 +42,8 @@ public class ChessBoard {
         board[0][3].setPiece(new Queen(false, board[0][3]));
         board[7][3].setPiece(new Queen(true, board[7][3]));
         //Create Kings
-        board[0][4].setPiece(new King(false, board[0][4]));
-        board[7][4].setPiece(new King(true, board[7][4]));
+        board[0][4].setPiece(new King(false, board[0][4], null));
+        board[7][4].setPiece(new King(true, board[7][4], null));
     }
 
     public Square[][] getBoard() {
