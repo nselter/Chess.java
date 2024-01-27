@@ -18,18 +18,22 @@ public class King extends Piece {
 
     @Override
     public List<Square> calculateValidSquares(ChessBoard board) {
-        Set<Square> opposingPlayerMoves = getOpposingPlayerMoves();
+        Set<Square> opposingPlayerMoves = getOpposingPlayerMoves(board);
         List<Square> ans = new ArrayList<>();
         int row = super.square.getRow();
         int col = super.square.getCol();
 
         for (int i=-1; i<2; i++) {
             for (int j=-1; j<2; j++) {
-                Square square = board.getSquare(row + i, col + j);
-                if (!opposingPlayerMoves.contains(square)) {
-                    // If empty or opposing piece add to valid moves
-                    if (square.isEmpty() || square.getPiece().color != super.color) {
-                        ans.add(square);
+                // If a valid square
+                if (row+i>=0 && col+j>=0 && row+i<8 && col+j<8){
+                    Square square = board.getSquare(row + i, col + j);
+                    // If not in opposing moves
+                    if (!opposingPlayerMoves.contains(square)) {
+                        // If empty or opposing piece add to valid moves
+                        if (square.isEmpty() || square.getPiece().color != super.color) {
+                            ans.add(square);
+                        }
                     }
                 }
             }
@@ -38,14 +42,33 @@ public class King extends Piece {
         return ans;
     }
 
-    private Set<Square> getOpposingPlayerMoves() {
+    private Set<Square> getOpposingPlayerMoves(ChessBoard board) {
         // Return all moves that the opponent can make
         Set<Square> movesSet = new HashSet<>();
         for (Piece p : opposingPlayer.getPieces()) {
-            movesSet.addAll(p.calculateValidSquares(null));
+            movesSet.addAll(p.calculateMoveableSquares(board));
         }
 
         return movesSet;
     }
     
+    @Override
+    public List<Square> calculateMoveableSquares(ChessBoard board) {
+        List<Square> validSquares = new ArrayList<>();
+        int row = super.square.getRow();
+        int col = super.square.getCol();
+
+        for (int i=-1; i<2; i++) {
+            for (int j=-1; j<2; j++) {
+                if (row+i>=0 && col+j>=0 && row+i<8 && col+j<8) {
+                    Square square = board.getSquare(row+i, col+i);
+                    if (square.isEmpty() || square.getPiece().color != super.color) {
+                    validSquares.add(square);
+                    }
+                }
+            }
+        }
+
+        return validSquares;
+    }
 }

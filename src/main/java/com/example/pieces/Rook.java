@@ -53,4 +53,8 @@ public class Rook extends Piece{
         return validSquares;
     }
     
+    @Override
+    public List<Square> calculateMoveableSquares(ChessBoard board) {
+        return calculateValidSquares(board);
+    }
 }

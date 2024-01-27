@@ -11,6 +11,7 @@ public class ChessBoardTest {
     @Test
     public void testName() {
         ChessBoard board = new ChessBoard();
+        board.addKings(null, null);
 
         //Check board is not null
         assertNotNull(board);

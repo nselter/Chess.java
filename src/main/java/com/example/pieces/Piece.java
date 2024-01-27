@@ -27,4 +27,5 @@ public abstract class Piece {
    }
 
    public abstract List<Square> calculateValidSquares(ChessBoard board);
+   public abstract List<Square> calculateMoveableSquares(ChessBoard board);
 }

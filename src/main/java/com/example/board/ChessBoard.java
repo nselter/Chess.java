@@ -1,6 +1,7 @@
 package com.example.board;
 
-import com.example.pieces.*;;
+import com.example.pieces.*;
+import com.example.players.Player;;
 
 public class ChessBoard {
     private Square[][] board;
@@ -41,9 +42,11 @@ public class ChessBoard {
         //Create Queens
         board[0][3].setPiece(new Queen(false, board[0][3]));
         board[7][3].setPiece(new Queen(true, board[7][3]));
-        //Create Kings
-        board[0][4].setPiece(new King(false, board[0][4], null));
-        board[7][4].setPiece(new King(true, board[7][4], null));
+    }
+
+    public void addKings(Player player1, Player player2) {
+        board[0][4].setPiece(new King(false, board[0][4], player1.getColor() ? player2 : player1));
+        board[7][4].setPiece(new King(true, board[7][4], player1.getColor() ? player1 : player2));
     }
 
     public Square[][] getBoard() {

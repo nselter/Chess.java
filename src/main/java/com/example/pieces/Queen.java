@@ -29,4 +29,9 @@ public class Queen extends Piece{
         rookPart.setSquare(square);
         bishopPart.setSquare(square);
     }
+
+    @Override
+    public List<Square> calculateMoveableSquares(ChessBoard board) {
+        return calculateValidSquares(board);
+    }
 }

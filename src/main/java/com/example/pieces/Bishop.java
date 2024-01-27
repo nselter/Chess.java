@@ -54,16 +54,22 @@ public class Bishop extends Piece{
         }
         i=row; 
         j=col;
-        while (--i>0 && ++j<7) {
+        while (i>0 && j<7) {
             Square square = board.getSquare(i-1, j+1);
             if (square.isEmpty()) validSquares.add(square);
             else {
                 if (square.getPiece().getColor() != super.color) validSquares.add(square);
                 break;
             }
+            i--;
+            j++;
         }
 
         return validSquares;
     }
     
+    @Override
+    public List<Square> calculateMoveableSquares(ChessBoard board) {
+        return calculateValidSquares(board);
+    }
 }

@@ -20,16 +20,16 @@ public abstract class Player {
     private void initalizePlayer(ChessBoard board) {
         for (int i=0; i<8; i++) {
             if (color) {
-                pieces.add(board.getSquare(7, i).getPiece());
+                if (i!=4) pieces.add(board.getSquare(7, i).getPiece());
                 pieces.add(board.getSquare(6, i).getPiece());
             } else {
-                pieces.add(board.getSquare(0, i).getPiece());
+                if (i!=4) pieces.add(board.getSquare(0, i).getPiece());
                 pieces.add(board.getSquare(1, i).getPiece());
             }
         }
     }
 
-    public boolean isColor() {
+    public boolean getColor() {
         return color;
     }
     public void setColor(boolean color) {
@@ -46,4 +46,9 @@ public abstract class Player {
     }
 
     public abstract Move makeMove(ChessBoard board);
+
+    public void addKings(ChessBoard board) {
+        if (color) addPiece(board.getSquare(7, 4).getPiece());
+        else addPiece(board.getSquare(0, 4).getPiece());
+    }
 }
