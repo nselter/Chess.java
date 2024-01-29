@@ -52,9 +52,46 @@ public class Rook extends Piece{
         
         return validSquares;
     }
-    
+
     @Override
     public List<Square> calculateMoveableSquares(ChessBoard board) {
-        return calculateValidSquares(board);
+        List<Square> validSquares = new ArrayList<>();
+        int row = super.square.getRow();
+        int col = super.square.getCol();
+
+        for (int i=row-1; i>=0; i--) {
+            Square square = board.getSquare(i, col);
+            validSquares.add(square);
+            if (!square.isEmpty()) {
+                if ((square.getPiece() instanceof King) && square.getPiece().getColor() != super.color) continue;
+                else break;
+            }
+        }
+        for (int i=row+1; i<8; i++) {
+            Square square = board.getSquare(i, col);
+            validSquares.add(square);
+            if (!square.isEmpty()) {
+                if ((square.getPiece() instanceof King) && square.getPiece().getColor() != super.color) continue;
+                else break;
+            }
+        }
+        for (int i=col-1; i>=0; i--) {
+            Square square = board.getSquare(row, i);
+            validSquares.add(square);
+            if (!square.isEmpty()) {
+                if ((square.getPiece() instanceof King) && square.getPiece().getColor() != super.color) continue;
+                else break;
+            }
+        }
+        for (int i=col+1; i<8; i++) {
+            Square square = board.getSquare(row, i);
+            validSquares.add(square);
+            if (!square.isEmpty()) {
+                if ((square.getPiece() instanceof King) && square.getPiece().getColor() != super.color) continue;
+                else break;
+            }
+        }
+        
+        return validSquares;
     }
 }

@@ -32,6 +32,9 @@ public class Queen extends Piece{
 
     @Override
     public List<Square> calculateMoveableSquares(ChessBoard board) {
-        return calculateValidSquares(board);
+        List<Square> validSquares = new ArrayList<>();
+        validSquares.addAll(rookPart.calculateMoveableSquares(board));
+        validSquares.addAll(bishopPart.calculateMoveableSquares(board));
+        return validSquares;
     }
 }

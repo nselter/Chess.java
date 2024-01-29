@@ -70,6 +70,59 @@ public class Bishop extends Piece{
     
     @Override
     public List<Square> calculateMoveableSquares(ChessBoard board) {
-        return calculateValidSquares(board);
+        List<Square> validSquares = new ArrayList<>();
+        int row = super.square.getRow();
+        int col = super.square.getCol();
+
+        int i=row+1;
+        int j=col+1;
+        while (i<8 && j<8) {
+            Square square = board.getSquare(i, j);
+            validSquares.add(square);
+            if (!square.isEmpty()) {
+                if ((square.getPiece() instanceof King) && square.getPiece().getColor() != super.color) continue;
+                else break;
+            } 
+            i++;
+            j++;
+        }
+        i=row-1;
+        j=col+1;
+        while (i>=0 && j<8) {
+            Square square = board.getSquare(i, j);
+            validSquares.add(square);
+            if (!square.isEmpty()) {
+                if ((square.getPiece() instanceof King) && square.getPiece().getColor() != super.color) continue;
+                else break;
+            } 
+            i--;
+            j++;
+        }
+        i=row-1;
+        j=col-1;
+        while (i>=0 && j>=0) {
+            Square square = board.getSquare(i, j);
+            validSquares.add(square);
+            if (!square.isEmpty()) {
+                if ((square.getPiece() instanceof King) && square.getPiece().getColor() != super.color) continue;
+                else break;
+            } 
+            i--;
+            j--;
+        }
+        i=row+1;
+        j=col-1;
+        while (i<8 && j>=0) {
+            Square square = board.getSquare(i, j);
+            validSquares.add(square);
+            if (!square.isEmpty()) {
+                if ((square.getPiece() instanceof King) && square.getPiece().getColor() != super.color) continue;
+                else break;
+            } 
+            i++;
+            j--;
+        }
+
+        return validSquares;
     }
 }

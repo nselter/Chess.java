@@ -39,6 +39,26 @@ public class Knight extends Piece{
     
     @Override
     public List<Square> calculateMoveableSquares(ChessBoard board) {
-        return calculateValidSquares(board);
+        List<Square> validSquares = new ArrayList<>();
+        int row = super.square.getRow();
+        int col= super.square.getCol();
+
+        for (int i=-2; i<3; i+=4) {
+            for (int j=-1; j<2; j+=2) {
+                //If target square empty or hold enamy piece add to valid
+                //Up Up Over
+                //If space on the board
+                if (row+i>=0 && row+i<8 && col+j>=0 && col+j<8){
+                    validSquares.add(board.getSquare(row+i, col+j));
+                }
+                //If target square empty or hold enamy piece add to valid
+                //Over over Up
+                if (row+j>=0 && row+j<8 && col+i>=0 && col+i<8) {
+                    validSquares.add(board.getSquare(row+j, col+i));
+                }
+            }
+        }
+
+        return validSquares;
     }
 }

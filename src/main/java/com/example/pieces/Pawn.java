@@ -46,6 +46,17 @@ public class Pawn extends Piece {
     
     @Override
     public List<Square> calculateMoveableSquares(ChessBoard board) {
-        return calculateValidSquares(board);
+        List<Square> validSquares = new ArrayList<>();
+        int direction = super.color ? -1 : 1; // Set which direction piece is going
+        int row = super.square.getRow();
+        int col = super.square.getCol();
+        for (int i=-1; i<2; i+=2) {
+            if (row+direction>=0 && row+direction<8 && col+i>=0 && col+i<8) {
+                Square diagonalSquare = board.getSquare(row + direction, col + i);
+                validSquares.add(diagonalSquare);
+            }
+        } 
+
+        return validSquares;
     }
 }

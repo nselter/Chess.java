@@ -61,10 +61,8 @@ public class King extends Piece {
         for (int i=-1; i<2; i++) {
             for (int j=-1; j<2; j++) {
                 if (row+i>=0 && col+j>=0 && row+i<8 && col+j<8) {
-                    Square square = board.getSquare(row+i, col+i);
-                    if (square.isEmpty() || square.getPiece().color != super.color) {
-                    validSquares.add(square);
-                    }
+                    validSquares.add(board.getSquare(row+i, col+i));
+                    
                 }
             }
         }

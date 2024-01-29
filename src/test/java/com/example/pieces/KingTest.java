@@ -32,9 +32,15 @@ public class KingTest {
         
         Square temp = board.getSquare(3, 1);
         temp.setPiece(new Queen(false, temp));
-        p2.addPiece(temp.getPiece());
+        p1.addPiece(temp.getPiece());
         temp = board.getSquare(4, 3);
         temp.setPiece(new King(true, temp, p1));
+
+        //Assert Queen Works well
+        int expectedSize3 = 17;
+        int actualSize3 = board.getSquare(3, 1).getPiece().calculateValidSquares(board).size();
+        assertEquals("Expected size: " + expectedSize3 + ", Actual size: " + actualSize3, expectedSize3, actualSize3);
+
 
         //Assert that there are two vaild moves from get go
         int expectedSize2 = 3;
