@@ -1,6 +1,7 @@
 package com.example.pieces;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 
 import org.junit.Test;
@@ -46,5 +47,23 @@ public class KingTest {
         int expectedSize2 = 3;
         int actualSize2 = temp.getPiece().calculateValidSquares(board).size();
         assertEquals("Expected size: " + expectedSize2 + ", Actual size: " + actualSize2, expectedSize2, actualSize2);
+    }
+
+    @Test
+    public void testInCheck() {
+        ChessBoard board = new ChessBoard();
+        Player p1 = new HumanPlayer(false, board, null);
+        Player p2 = new HumanPlayer(true, board, null);
+        board.addKings(p1, p2);
+        p1.addKings(board);
+        p2.addKings(board);
+
+        King kingPiece = (King) board.getSquare(7, 4).getPiece();
+
+        //Assert object has been made
+        assertNotNull(kingPiece);
+
+        //Assert not in check
+        assertFalse(kingPiece.inCheck(board));
     }
 }

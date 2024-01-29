@@ -69,4 +69,12 @@ public class King extends Piece {
 
         return validSquares;
     }
+
+    public boolean canMove(ChessBoard board) {
+        return calculateValidSquares(board).size() > 0;
+    }
+
+    public boolean inCheck(ChessBoard board) {
+        return getOpposingPlayerMoves(board).contains(super.getSquare());
+    }
 }

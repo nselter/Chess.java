@@ -5,11 +5,13 @@ import java.util.Set;
 
 import com.example.board.ChessBoard;
 import com.example.game.Move;
+import com.example.pieces.King;
 import com.example.pieces.Piece;
 
 public abstract class Player {
     protected boolean color;
     protected Set<Piece> pieces;
+    protected King king;
 
     public Player(boolean color, ChessBoard board) {
         this.color = color;
@@ -44,11 +46,20 @@ public abstract class Player {
     public void addPiece(Piece piece) {
         pieces.add(piece);
     }
+    public King getKing() {
+        return this.king;
+    }
 
     public abstract Move makeMove(ChessBoard board);
 
     public void addKings(ChessBoard board) {
-        if (color) addPiece(board.getSquare(7, 4).getPiece());
-        else addPiece(board.getSquare(0, 4).getPiece());
+        if (color) {
+            addPiece(board.getSquare(7, 4).getPiece());
+            king = (King) board.getSquare(7, 4).getPiece();
+        }
+        else {
+            addPiece(board.getSquare(0, 4).getPiece());
+            king = (King) board.getSquare(0, 4).getPiece();
+        }
     }
 }

@@ -70,4 +70,10 @@ public class Pawn extends Piece {
 
         return validSquares;
     }
+
+    public static boolean isEnPassant(Piece movedPiece, Square destinationSquare) {
+        if (!(movedPiece instanceof Pawn) || !destinationSquare.isEmpty()) return false;
+
+        return true;
+    }
 }

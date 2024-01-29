@@ -2,6 +2,7 @@ package com.example.game;
 
 import com.example.board.ChessBoard;
 import com.example.board.Square;
+import com.example.pieces.Pawn;
 import com.example.pieces.Piece;
 
 public class Move {
@@ -40,9 +41,19 @@ public class Move {
         return piece.calculateValidSquares(board).contains(squareTo); // If cal validSquares contains endSquare return ture
     }
 
-    public void makeMove(ChessBoard board) {
-        movedPiece.setSquare(destinationSquare);
-        board.getSquare(sourceSquare.getRow(), sourceSquare.getCol()).removePiece();
-        board.getSquare(destinationSquare.getRow(), destinationSquare.getCol()).setPiece(movedPiece);
+    public Piece makeMove(ChessBoard board) {
+        Piece capturedPiece = destinationSquare.getPiece();
+        
+        //Handle EnPassant Case
+        if (Pawn.isEnPassant(movedPiece, destinationSquare)) {
+            capturedPiece = board.getSquare((movedPiece.getColor() ? 3 : 4), destinationSquare.getCol()).getPiece();
+            board.delPiece((movedPiece.getColor() ? 3 : 4), destinationSquare.getCol());
+        }
+        
+        movedPiece.setSquare(destinationSquare); //Move the piece to new square
+        board.delPiece(sourceSquare.getRow(), sourceSquare.getCol()); // Remove piece from source square
+        board.getSquare(destinationSquare.getRow(), destinationSquare.getCol()).setPiece(movedPiece); // Set piece to new square
+
+        return capturedPiece;
     }
 }

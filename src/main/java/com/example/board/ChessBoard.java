@@ -55,8 +55,8 @@ public class ChessBoard {
     }
 
     public void addKings(Player player1, Player player2) {
-        board[0][4].setPiece(new King(false, board[0][4], player1.getColor() ? player2 : player1));
-        board[7][4].setPiece(new King(true, board[7][4], player1.getColor() ? player1 : player2));
+        board[0][4].setPiece(new King(false, board[0][4], player1.getColor() ? player1 : player2));
+        board[7][4].setPiece(new King(true, board[7][4], player1.getColor() ? player2 : player1));
     }
 
     public Square[][] getBoard() {

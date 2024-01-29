@@ -47,8 +47,8 @@ public class HumanPlayer extends Player {
         Piece pieceToMove = null;
         Square moveFrom = null;
         Square moveTo = null;
-        while (Move.checkValidMove(moveFrom, moveTo, board)) {
-            while (pieceToMove != null && pieces.contains(pieceToMove)) {
+        while (!Move.checkValidMove(moveFrom, moveTo, board)) {
+            while (pieceToMove == null || !pieces.contains(pieceToMove)) {
                 board.print();
                 System.out.println("Pick Your Piece: ");
                 moveFrom = chooseSquare(board);

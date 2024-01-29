@@ -1,11 +1,15 @@
 package com.example;
 
-import com.example.board.ChessBoard;
+import java.util.Scanner;
+
+import com.example.game.Game;
 
 public class ChessGame {
     public static void main(String[] args) {
-        ChessBoard board = new ChessBoard();
+        Game game = new Game(0, true, new Scanner(System.in));
 
-        board.print();
+        game.play();
+
+        System.out.println("Good Game!");
     }
 }
