@@ -1,14 +1,24 @@
 package com.example.board;
 
+import com.example.game.Move;
 import com.example.pieces.*;
 import com.example.players.Player;;
 
 public class ChessBoard {
     private Square[][] board;
+    private Move lastMove;
+
+    public Move getLastMove() {
+        return lastMove;
+    }
+
+    public void setLastMove(Move lastMove) {
+        this.lastMove = lastMove;
+    }
 
     public ChessBoard() {
         board = new Square[8][8];
-
+        lastMove = null;
         initalizeBoard();
     }
 

@@ -39,4 +39,10 @@ public class Move {
         Piece piece = squareFrom.getPiece();
         return piece.calculateValidSquares(board).contains(squareTo); // If cal validSquares contains endSquare return ture
     }
+
+    public void makeMove(ChessBoard board) {
+        movedPiece.setSquare(destinationSquare);
+        board.getSquare(sourceSquare.getRow(), sourceSquare.getCol()).removePiece();
+        board.getSquare(destinationSquare.getRow(), destinationSquare.getCol()).setPiece(movedPiece);
+    }
 }

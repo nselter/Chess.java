@@ -56,4 +56,7 @@ public class Square {
         else if (piece instanceof Queen) return "Q";
         else return "";
     }
+    public void removePiece() {
+        setPiece(null);
+    }
 }
