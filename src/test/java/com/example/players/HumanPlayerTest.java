@@ -2,6 +2,7 @@ package com.example.players;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import java.util.Scanner;
 
@@ -15,6 +16,9 @@ public class HumanPlayerTest {
     public void testMakeMove() {
         ChessBoard board = new ChessBoard();
         HumanPlayer player1 = new HumanPlayer(true, board, new Scanner(System.in));
+        Player p2 = new HumanPlayer(false, board, null);
+        board.addKings(player1, p2);
+        player1.addKings(board);
 
         // Check if not null
         assertNotNull(player1);
@@ -25,10 +29,9 @@ public class HumanPlayerTest {
         assertEquals("Expected size: " + expectedSize + ", Actual size: " + actualSize, expectedSize, actualSize);
 
         // Check to see if 64 vaild input Strings
-        int expectedSize2 = 64;
-        int actualSize2 = player1.validSquares.size();
-        assertEquals("Expected size: " + expectedSize2 + ", Actual size: " + actualSize2, expectedSize2, actualSize2);
-
+        expectedSize = 64;
+        actualSize = player1.getValidSquares().size();
+        assertEquals("Expected size: " + expectedSize + ", Actual size: " + actualSize, expectedSize, actualSize);
 
     }
 }

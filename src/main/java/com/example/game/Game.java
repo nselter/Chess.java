@@ -43,6 +43,7 @@ public class Game {
                 if (capturedPiece != null) player1.getPieces().remove(capturedPiece);
             }
 
+            board.setLastMove(move);
             p1turn = !p1turn;
         }
     }

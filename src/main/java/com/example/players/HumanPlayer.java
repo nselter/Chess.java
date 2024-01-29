@@ -13,6 +13,10 @@ public class HumanPlayer extends Player {
     private Scanner scnr;
     public Set<String> validSquares;
 
+    public Set<String> getValidSquares() {
+        return validSquares;
+    }
+
     public HumanPlayer(boolean color, ChessBoard board, Scanner scnr) {
         super(color, board);
         this.scnr = scnr;
@@ -27,6 +31,10 @@ public class HumanPlayer extends Player {
                 validSquares.add(""+(char)('A'+i) + (j+1));
             }
         }
+
+        for (String s : validSquares) {
+            System.out.print(s + ", ");
+        }
     }
 
     private Square chooseSquare(ChessBoard board) {
@@ -36,9 +44,10 @@ public class HumanPlayer extends Player {
             String rawString = scnr.nextLine();
             inputString = rawString.substring(0, 2);
         }
-        int row = inputString.charAt(0) - 'A';
-        int col = Character.getNumericValue(inputString.charAt(1))-1;
+        int col = inputString.charAt(0) - 'A';
+        int row = 8-Character.getNumericValue(inputString.charAt(1));
 
+        System.out.println(""+row+", "+col);
         return board.getSquare(row, col);
     }
 
@@ -48,6 +57,7 @@ public class HumanPlayer extends Player {
         Square moveFrom = null;
         Square moveTo = null;
         while (!Move.checkValidMove(moveFrom, moveTo, board)) {
+            pieceToMove = null;
             while (pieceToMove == null || !pieces.contains(pieceToMove)) {
                 board.print();
                 System.out.println("Pick Your Piece: ");
