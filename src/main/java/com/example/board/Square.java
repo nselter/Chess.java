@@ -48,12 +48,12 @@ public class Square {
     @Override
     public String toString() {
         if (piece == null) return " ";
-        else if (piece instanceof Pawn) return "P";
-        else if (piece instanceof Rook) return "R";
-        else if (piece instanceof Knight) return "N";
-        else if (piece instanceof Bishop) return "B";
-        else if (piece instanceof King) return "K";
-        else if (piece instanceof Queen) return "Q";
+        else if (piece instanceof Pawn) return piece.getColor() ? "P" : "p";
+        else if (piece instanceof Rook) return piece.getColor() ? "R" : "r";
+        else if (piece instanceof Knight) return piece.getColor() ? "N" : "n";
+        else if (piece instanceof Bishop) return piece.getColor() ? "B" : "b";
+        else if (piece instanceof King) return piece.getColor() ? "K" : "k";
+        else if (piece instanceof Queen) return piece.getColor() ? "Q" : "q";
         else return "";
     }
     public void removePiece() {

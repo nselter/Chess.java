@@ -74,6 +74,7 @@ public class Pawn extends Piece {
     public static boolean isEnPassant(Piece movedPiece, Square destinationSquare) {
         if (!(movedPiece instanceof Pawn) || !destinationSquare.isEmpty()) return false;
 
-        return true;
+        if (movedPiece.square.getRow() == (movedPiece.color ? 3 :4)) return true;
+        return false;
     }
 }
