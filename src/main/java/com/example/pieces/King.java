@@ -1,11 +1,11 @@
 package com.example.pieces;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 import com.example.board.*;
+import com.example.game.Move;
 import com.example.players.Player;
 
 public class King extends Piece {
@@ -18,7 +18,7 @@ public class King extends Piece {
 
     @Override
     public List<Square> calculateValidSquares(ChessBoard board) {
-        Set<Square> opposingPlayerMoves = getOpposingPlayerMoves(board);
+        Set<Square> opposingPlayerMoves = opposingPlayer.getPlayerMoves(board);
         List<Square> ans = new ArrayList<>();
         int row = super.square.getRow();
         int col = super.square.getCol();
@@ -42,15 +42,6 @@ public class King extends Piece {
         return ans;
     }
 
-    private Set<Square> getOpposingPlayerMoves(ChessBoard board) {
-        // Return all moves that the opponent can make
-        Set<Square> movesSet = new HashSet<>();
-        for (Piece p : opposingPlayer.getPieces()) {
-            movesSet.addAll(p.calculateMoveableSquares(board));
-        }
-
-        return movesSet;
-    }
     
     @Override
     public List<Square> calculateMoveableSquares(ChessBoard board) {
@@ -75,6 +66,13 @@ public class King extends Piece {
     }
 
     public boolean inCheck(ChessBoard board) {
-        return getOpposingPlayerMoves(board).contains(super.getSquare());
+        return opposingPlayer.getPlayerMoves(board).contains(super.getSquare());
+    }
+
+    public boolean outOfCheck(Move move, ChessBoard board) {
+        Piece tempPiece = move.makeMove(board);
+        boolean ans = inCheck(board);
+        move.undoMove(board, tempPiece);
+        return ans;
     }
 }

@@ -18,7 +18,7 @@ public class HumanPlayerTest {
         HumanPlayer player1 = new HumanPlayer(true, board, new Scanner(System.in));
         Player p2 = new HumanPlayer(false, board, null);
         board.addKings(player1, p2);
-        player1.addKings(board);
+        player1.addKing(board);
 
         // Check if not null
         assertNotNull(player1);

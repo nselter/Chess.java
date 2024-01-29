@@ -56,4 +56,13 @@ public class Move {
 
         return capturedPiece;
     }
+
+    public void undoMove(ChessBoard board, Piece capturedPiece) {
+        movedPiece.setSquare(sourceSquare);
+        board.delPiece(destinationSquare.getRow(), destinationSquare.getCol());
+        board.getSquare(sourceSquare.getRow(), sourceSquare.getCol()).setPiece(movedPiece);;
+        if (capturedPiece != null) {
+            board.getSquare(destinationSquare.getRow(), destinationSquare.getCol()).setPiece(capturedPiece);
+        }
+    }
 }

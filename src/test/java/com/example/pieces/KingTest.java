@@ -18,8 +18,8 @@ public class KingTest {
         Player p1 = new HumanPlayer(false, board, null);
         Player p2 = new HumanPlayer(true, board, null);
         board.addKings(p1, p2);
-        p1.addKings(board);
-        p2.addKings(board);
+        p1.addKing(board);
+        p2.addKing(board);
 
         Piece kingPiece = board.getSquare(7, 4).getPiece();
 
@@ -55,8 +55,8 @@ public class KingTest {
         Player p1 = new HumanPlayer(false, board, null);
         Player p2 = new HumanPlayer(true, board, null);
         board.addKings(p1, p2);
-        p1.addKings(board);
-        p2.addKings(board);
+        p1.addKing(board);
+        p2.addKing(board);
 
         King kingPiece = (King) board.getSquare(7, 4).getPiece();
 

@@ -3,6 +3,7 @@ package com.example.game;
 import java.util.Scanner;
 
 import com.example.board.ChessBoard;
+import com.example.board.Square;
 import com.example.pieces.Piece;
 import com.example.players.ComputerPlayer;
 import com.example.players.HumanPlayer;
@@ -24,8 +25,18 @@ public class Game {
         }
 
         board.addKings(player1, player2);
-        player1.addKings(board);
-        player2.addKings(board);
+        player1.addKing(board);
+        player2.addKing(board);
+    }
+
+    private Move getPlayerMove(Player player) {
+        Move move = player.makeMove(board);
+        if (player.getKing().inCheck(board)) {
+            while (player.getKing().outOfCheck(move, board)) {
+                move = player.makeMove(board);
+            }
+        }
+        return move;
     }
 
     public void play() {
@@ -34,11 +45,11 @@ public class Game {
             board.print();
             Move move;
             if (p1turn) {
-                move = player1.makeMove(board);
+                move = getPlayerMove(player1);
                 Piece capturedPiece = move.makeMove(board);
                 if (capturedPiece != null) player2.getPieces().remove(capturedPiece);
             } else {
-                move = player2.makeMove(board);
+                move = getPlayerMove(player2);
                 Piece capturedPiece = move.makeMove(board);
                 if (capturedPiece != null) player1.getPieces().remove(capturedPiece);
             }
@@ -50,6 +61,9 @@ public class Game {
 
     private boolean isGameOver() {
         if (player1.getKing().inCheck(board) && !player1.getKing().canMove(board)) {
+            for (Square sq : player1.getPlayerMoves(board)) {
+                
+            }
             winner = player2;
             return true;
         } else if (player2.getKing().inCheck(board) && !player2.getKing().canMove(board)) {
