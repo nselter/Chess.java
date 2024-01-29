@@ -3,8 +3,6 @@ package com.example.pieces;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
-import javax.swing.text.PlainDocument;
-
 import org.junit.Test;
 
 import com.example.board.ChessBoard;

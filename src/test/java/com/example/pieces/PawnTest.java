@@ -7,6 +7,7 @@ import org.junit.Test;
 
 import com.example.board.ChessBoard;
 import com.example.board.Square;
+import com.example.game.Move;
 
 public class PawnTest {
     @Test
@@ -30,8 +31,19 @@ public class PawnTest {
         square2.setPiece(new Pawn(false, square2));
 
         //Assert that there are two vaild moves from get go
-        int expectedSize2 = 3;
-        int actualSize2 = board.getSquare(4, 4).getPiece().calculateValidSquares(board).size();
-        assertEquals("Expected size: " + expectedSize2 + ", Actual size: " + actualSize2, expectedSize2, actualSize2);
+        expectedSize = 2;
+        actualSize = board.getSquare(4, 4).getPiece().calculateValidSquares(board).size();
+        assertEquals("Expected size: " + expectedSize + ", Actual size: " + actualSize, expectedSize, actualSize);
+
+        //Check onpassunt move
+        board.getSquare(3, 0).setPiece(new Pawn(true, board.getSquare(3, 0)));
+        pawnPiece = board.getSquare(3, 0).getPiece();
+        Move newMove = new Move(board.getSquare(1, 1), board.getSquare(3, 1));
+        newMove.makeMove(board);
+        board.setLastMove(newMove);
+
+        expectedSize = 2;
+        actualSize = board.getSquare(3, 0).getPiece().calculateValidSquares(board).size();
+        assertEquals("Expected size: " + expectedSize + ", Actual size: " + actualSize, expectedSize, actualSize);
     }
 }

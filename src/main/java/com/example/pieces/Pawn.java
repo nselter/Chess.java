@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.example.board.*;
+import com.example.game.Move;
 
 public class Pawn extends Piece {
 
@@ -39,7 +40,17 @@ public class Pawn extends Piece {
             }
         } 
         //TO-DO: Add ON-PASSUNT into moves
-        
+        // If on valid row for onpassunt
+        if (super.square.getRow() == (super.color ? 3 :4)) {
+            Move lastMove = board.getLastMove();
+            // If last move was pawn forward by 2
+            if (lastMove.getMovedPiece() instanceof Pawn && lastMove.getSourceSquare().getRow() == (super.color ? 1 : 6) && lastMove.getDestinationSquare().getRow() == (super.color ? 3 : 4)) {
+                //If one column away
+                if (Math.abs(lastMove.getDestinationSquare().getCol() - super.getSquare().getCol()) == 1) {
+                    validSquares.add(board.getSquare((super.color ? 2 : 5), lastMove.getDestinationSquare().getCol()));
+                }
+            }
+        }
 
         return validSquares;
     }
