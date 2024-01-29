@@ -19,50 +19,52 @@ public class Bishop extends Piece{
 
         int i=row, j=col;
         while (i<7 && j<7) {
-            Square square = board.getSquare(i+1, j+1);
+            i++;
+            j++;
+            Square square = board.getSquare(i, j);
             if (square.isEmpty()) validSquares.add(square);
             else {
                 if (square.getPiece().getColor() != super.color) validSquares.add(square);
                 break;
             }
-            i++;
-            j++;
+            
         }
         i=row; 
         j=col;
         while (i<7 && j>0) {
-            Square square = board.getSquare(i+1, j-1);
+            i++;
+            j--;
+            Square square = board.getSquare(i, j);
             if (square.isEmpty()) validSquares.add(square);
             else {
                 if (square.getPiece().getColor() != super.color) validSquares.add(square);
                 break;
             }
-            i++;
-            j--;
         }
         i=row; 
         j=col;
         while (i>0 && j>0) {
-            Square square = board.getSquare(i-1, j-1);
+            i--;
+            j--;
+            Square square = board.getSquare(i, j);
             if (square.isEmpty()) validSquares.add(square);
             else {
                 if (square.getPiece().getColor() != super.color) validSquares.add(square);
                 break;
             }
-            i--;
-            j--;
+            
         }
         i=row; 
         j=col;
         while (i>0 && j<7) {
-            Square square = board.getSquare(i-1, j+1);
+            i--;
+            j++;
+            Square square = board.getSquare(i, j);
             if (square.isEmpty()) validSquares.add(square);
             else {
                 if (square.getPiece().getColor() != super.color) validSquares.add(square);
                 break;
             }
-            i--;
-            j++;
         }
 
         return validSquares;
@@ -74,53 +76,53 @@ public class Bishop extends Piece{
         int row = super.square.getRow();
         int col = super.square.getCol();
 
-        int i=row+1;
-        int j=col+1;
-        while (i<8 && j<8) {
-            Square square = board.getSquare(i, j);
-            validSquares.add(square);
-            if (!square.isEmpty()) {
-                if ((square.getPiece() instanceof King) && square.getPiece().getColor() != super.color) continue;
-                else break;
-            } 
+        int i=row;
+        int j=col;
+        while (i<7 && j<7) {
             i++;
             j++;
-        }
-        i=row-1;
-        j=col+1;
-        while (i>=0 && j<8) {
             Square square = board.getSquare(i, j);
             validSquares.add(square);
             if (!square.isEmpty()) {
                 if ((square.getPiece() instanceof King) && square.getPiece().getColor() != super.color) continue;
                 else break;
             } 
+        }
+        i=row;
+        j=col;
+        while (i>0 && j<7) {
             i--;
             j++;
-        }
-        i=row-1;
-        j=col-1;
-        while (i>=0 && j>=0) {
             Square square = board.getSquare(i, j);
             validSquares.add(square);
             if (!square.isEmpty()) {
                 if ((square.getPiece() instanceof King) && square.getPiece().getColor() != super.color) continue;
                 else break;
             } 
+        }
+        i=row;
+        j=col;
+        while (i>0 && j>0) {
             i--;
             j--;
-        }
-        i=row+1;
-        j=col-1;
-        while (i<8 && j>=0) {
             Square square = board.getSquare(i, j);
             validSquares.add(square);
             if (!square.isEmpty()) {
                 if ((square.getPiece() instanceof King) && square.getPiece().getColor() != super.color) continue;
                 else break;
             } 
+        }
+        i=row;
+        j=col;
+        while (i<7 && j>0) {
             i++;
             j--;
+            Square square = board.getSquare(i, j);
+            validSquares.add(square);
+            if (!square.isEmpty()) {
+                if ((square.getPiece() instanceof King) && square.getPiece().getColor() != super.color) continue;
+                else break;
+            } 
         }
 
         return validSquares;

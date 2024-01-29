@@ -41,8 +41,12 @@ public class HumanPlayer extends Player {
         // Gets valid square 
         String inputString = "";
         while (!validSquares.contains(inputString)) {
-            String rawString = scnr.nextLine();
-            inputString = rawString.substring(0, 2);
+            try {
+                String rawString = scnr.nextLine();
+                inputString = rawString.substring(0, 2);
+            } catch (Exception e) {
+                System.out.println("Input Error");
+            }
         }
         int col = inputString.charAt(0) - 'A';
         int row = 8-Character.getNumericValue(inputString.charAt(1));
